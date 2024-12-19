@@ -145,7 +145,6 @@ function getBook(id) {
 
 // Destructuring
 
-/*
 const book = getBook(3);
 book;
 
@@ -223,9 +222,7 @@ function getTotalReviewCount(book) {
 }
 
 console.log(getTotalReviewCount(book));
-*/
 
-/*
 function getTotalReviewCount(book) {
   const goodreads = book.reviews?.goodreads?.reviewsCount;
   const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
@@ -288,7 +285,6 @@ const booksAfterUpdate = booksAfterDelete.map((book) =>
   book.id === 1 ? { ...book, pages: 1210 } : book
 );
 booksAfterUpdate;
-*/
 
 // fetch("https://jsonplaceholder.typicode.com/todos")
 //   .then((res) => res.json())
