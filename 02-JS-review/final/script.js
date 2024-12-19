@@ -144,26 +144,23 @@ function getBook(id) {
 }
 
 // Destructuring
-
-const book = getBook(3);
-book;
-
-// const title = book.title;
-// const author = book.author;
-
+const book = getBook(5);
+console.log(book.title);
+console.log(book.author);
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
   book;
+console.log(title, author, genres);
 
-console.log(author, title, genres);
-
-// const primaryGenre = genres[0];
-// const secondaryGenre = genres[1];
-
+// Rest / Spread
+console.log(genres);
 const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
 console.log(primaryGenre, secondaryGenre, otherGenres);
 
 const newGenres = ["epic fantasy", ...genres];
 newGenres;
+
+const newGenres2 = [...genres, "epic fantasy"];
+newGenres2;
 
 const updatedBook = {
   ...book,
@@ -175,22 +172,12 @@ const updatedBook = {
 };
 updatedBook;
 
-// function getYear(str) {
-//   return str.split("-")[0];
-// }
-
-const getYear = (str) => str.split("-")[0];
-console.log(getYear(publicationDate));
-
-const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${getYear(
-  publicationDate
-)}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
-summary;
-
+// Ternary operator ? :
 const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
-pagesRange;
+console.log(pagesRange);
 console.log(`The book has ${pagesRange} pages`);
 
+// Amd &&
 console.log(true && "Some string");
 console.log(false && "Some string");
 console.log(hasMovieAdaptation && "This book has a movie");
@@ -199,6 +186,7 @@ console.log(hasMovieAdaptation && "This book has a movie");
 console.log("jonas" && "Some string");
 console.log(0 && "Some string");
 
+// OR ||
 console.log(true || "Some string");
 console.log(false || "Some string");
 
@@ -207,32 +195,31 @@ console.log(book.translations.spanish);
 const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
 spanishTranslation;
 
-// console.log(book.reviews.librarything.reviewsCount);
-// const countWrong = book.reviews.librarything.reviewsCount || "no data";
-// countWrong;
+// Arrow functions
+const getYear = (str) => str.split("-")[0];
+console.log(getYear(book.publicationDate));
 
-// const count = book.reviews.librarything.reviewsCount ?? "no data";
-// count;
+// Example of using all the above
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${getYear(
+  publicationDate
+)}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
+summary;
 
+// Optional chaining
+// after ? continue if the value is not null or undefined
+// after ?? is the default value
 function getTotalReviewCount(book) {
   const goodreads = book.reviews?.goodreads?.reviewsCount;
   const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
   librarything;
   return goodreads + librarything;
 }
-
 console.log(getTotalReviewCount(book));
-
-function getTotalReviewCount(book) {
-  const goodreads = book.reviews?.goodreads?.reviewsCount;
-  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
-  librarything;
-  return goodreads + librarything;
-}
 
 const books = getBooks();
 books;
 
+// Map
 const x = [1, 2, 3, 4, 5].map((el) => el * 2);
 console.log(x);
 
@@ -246,6 +233,7 @@ const essentialData = books.map((book) => ({
 }));
 essentialData;
 
+// Filter
 const longBooksWithMovie = books
   .filter((book) => book.pages > 500)
   .filter((book) => book.hasMovieAdaptation);
@@ -256,6 +244,7 @@ const adventureBooks = books
   .map((book) => book.title);
 adventureBooks;
 
+// Reduce
 const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
 pagesAllBooks;
 
