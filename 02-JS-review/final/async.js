@@ -1,21 +1,21 @@
 // Asynchronous Javascript: Promisses
 
-// not async call - does not work because the function returns before the data is fetched
-function getTodos() {
-  fetch("https://jsonplaceholder.typicode.com/todos")
-    .then((res) => res.json())
-    .then((data) => data);
-}
-const todos = getTodos();
-console.log(todos);
+// Using promises
+fetch("https://jsonplaceholder.typicode.com/todos")
+  .then((res) => res.json())
+  .then((data) => console.log(data));
+
+console.log("davi");
 
 // async call
-async function getTodosAsync() {
+async function getTodos() {
   const res = await fetch("https://jsonplaceholder.typicode.com/todos");
   const data = await res.json();
   console.log(data);
   return data;
 }
 
-const todosAsync = getTodosAsync();
-console.log(todosAsync);
+getTodos();
+console.log("davi");
+
+// both will print the same thing, but async/await is more readable than promises
