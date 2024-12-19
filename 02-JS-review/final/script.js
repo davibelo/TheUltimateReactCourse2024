@@ -244,18 +244,20 @@ const adventureBooks = books
   .map((book) => book.title);
 adventureBooks;
 
-// Reduce
+// Reduce = use a callback function to reduce (not so used)
 const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
 pagesAllBooks;
 
+// Sort
 const arr = [3, 7, 1, 9, 6];
-const sorted = arr.slice().sort((a, b) => a - b);
+const sorted = arr.slice().sort((a, b) => a - b); // ascending
 sorted;
 arr;
 
 const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages);
 sortedByPages;
 
+// Exercises:
 // 1) Add book object to array
 const newBook = {
   id: 6,
@@ -274,22 +276,3 @@ const booksAfterUpdate = booksAfterDelete.map((book) =>
   book.id === 1 ? { ...book, pages: 1210 } : book
 );
 booksAfterUpdate;
-
-// fetch("https://jsonplaceholder.typicode.com/todos")
-//   .then((res) => res.json())
-//   .then((data) => console.log(data));
-
-// console.log("jonas");
-
-async function getTodos() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
-  const data = await res.json();
-  console.log(data);
-
-  return data;
-}
-
-const todos = getTodos();
-console.log(todos);
-
-console.log("jonas");
