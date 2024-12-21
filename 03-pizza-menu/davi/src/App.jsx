@@ -27,6 +27,8 @@ function Header() {
 }
 
 function Menu() {
+  const numPizzas = 0;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
@@ -34,11 +36,15 @@ function Menu() {
         Authentic Italian cuisine. 6 creative dishes to choose from. All from
         our stone oven, all organic, all delicious.
       </p>
-      <ul className="pizzas">
-        {pizzaData.map((pizza, index) => (
-          <Pizza pizzaObj={pizza} key={index} />
-        ))}
-      </ul>
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzaData.map((pizza, index) => (
+            <Pizza pizzaObj={pizza} key={index} />
+          ))}
+        </ul>
+      ) : (
+        <p>We´re working on Menu</p>
+      )}
     </main>
   );
 }
@@ -55,10 +61,16 @@ function Pizza({ pizzaObj }) {
 }
 
 function Order() {
+  const numPizzas = 0;
+
   return (
     <div className="order">
-      {isOpen && <p>Order online or come and visit us until {closeHour}:30</p>}
-      {isOpen && <button className="btn">Order</button>}
+      {isOpen && numPizzas > 0 && (
+        <>
+          <p>Order online or come and visit us until {closeHour}:30</p>
+          <button className="btn">Order</button>
+        </>
+      )}
     </div>
   );
 }
