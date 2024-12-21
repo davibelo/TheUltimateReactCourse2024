@@ -49,7 +49,7 @@ function Pizza({ pizzaObj }) {
       <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <h3>{pizzaObj.name}</h3>
       <p>Ingredients: {pizzaObj.ingredients}</p>
-      <p>Price: $ {pizzaObj.soldOut ? "Sold Out" : pizzaObj.price}</p>
+      <p>{pizzaObj.soldOut ? "Sold Out" : `Price: $${pizzaObj.price}`}</p>
     </li>
   );
 }
