@@ -1,6 +1,12 @@
 import pizzaData from "./data";
 import "./index.css";
 
+// Check if it's open
+const hour = new Date().getHours();
+const openHour = 9;
+const closeHour = 23;
+const isOpen = hour > openHour && hour <= closeHour;
+
 function App() {
   return (
     <div className="container">
@@ -47,27 +53,30 @@ function Pizza(props) {
 function Order() {
   return (
     <div className="order">
-      <button className="btn">Order</button>
+      {isOpen && <p>"Order online or come and visit us until {closeHour}:30</p>}
+      {isOpen && <button className="btn">Order</button>}
     </div>
   );
 }
 
 function Footer() {
-  const hour = new Date().getHours();
-  const openHour = 9;
-  const closeHour = 23;
-  const isOpen = hour > openHour && hour <= closeHour;
-
   let message;
   if (isOpen) {
-    message = <p>We're currently open</p>;
+    message = <p></p>;
   } else {
     message = <p>Sorry, we're currently closed</p>;
   }
 
   return (
     <footer className="footer">
-      <p>{new Date().toLocaleTimeString()}</p>
+      <p>Time now</p>
+      <p>
+        {new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        })}
+      </p>
       {message}
     </footer>
   );
