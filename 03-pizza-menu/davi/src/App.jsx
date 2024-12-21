@@ -6,6 +6,7 @@ function App() {
     <div className="container">
       <Header />
       <Menu />
+      <Order />
       <Footer />
     </div>
   );
@@ -23,26 +24,31 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      {pizzaData.map((pizza, index) => (
-        <Pizza pizzaObj={pizza} key={index} />
-      ))}
+      <ul className="pizzas">
+        {pizzaData.map((pizza, index) => (
+          <Pizza pizzaObj={pizza} key={index} />
+        ))}
+      </ul>
     </main>
   );
 }
 
 function Pizza(props) {
   return (
-    console.log(props),
-    (
-      <div className="pizza">
-        <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
-        <div>
-          <h3>{props.pizzaObj.name}</h3>
-          <p>Ingredients: {props.pizzaObj.ingredients}</p>
-          <p>Price: ${props.pizzaObj.price + 3}</p>
-        </div>
-      </div>
-    )
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <h3>{props.pizzaObj.name}</h3>
+      <p>Ingredients: {props.pizzaObj.ingredients}</p>
+      <p>Price: ${props.pizzaObj.price + 3}</p>
+    </li>
+  );
+}
+
+function Order() {
+  return (
+    <div className="order">
+      <button className="btn">Order</button>
+    </div>
   );
 }
 
@@ -52,8 +58,6 @@ function Footer() {
   const closeHour = 23;
   const isOpen = hour > openHour && hour <= closeHour;
 
-  //   if (isOpen) alert("We're currently open");
-  //   else alert("Sorry, we're currently closed");
   let message;
   if (isOpen) {
     message = <p>We're currently open</p>;
