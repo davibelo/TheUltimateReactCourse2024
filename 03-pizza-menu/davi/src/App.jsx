@@ -57,7 +57,7 @@ function Pizza({ pizzaObj }) {
 function Order() {
   return (
     <div className="order">
-      {isOpen && <p>"Order online or come and visit us until {closeHour}:30</p>}
+      {isOpen && <p>Order online or come and visit us until {closeHour}:30</p>}
       {isOpen && <button className="btn">Order</button>}
     </div>
   );
